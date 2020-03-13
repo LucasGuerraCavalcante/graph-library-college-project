@@ -34,17 +34,67 @@ def Ponto(x, y, cor, primitiva, janela):
     y = coordenadasCorrgidas["y"]
 
     if primitiva == 1:
-        point = Point(x,y)
-        point.setFill(cor)
-        point.draw(janela)
-        janela.getMouse()
-        janela.close()
+
+        pixel = Point(x,y)
+        pixel.setFill(cor)
+        pixel.draw(janela)
+
+        return janela
+
+    elif primitiva == 2: 
+
+        points = [Point(x,y),Point(x+1,y+1),
+                  Point(x+1,y),Point(x,y+1)]
+
+        for ponto in points:
+            pixel = ponto
+            pixel.setFill(cor)
+            pixel.draw(janela)
+
+        return janela
+
+    elif primitiva == 3: 
+        
+        points = [Point(x+1,y),Point(x-1,y),
+                  Point(x,y+1),Point(x,y-1),
+                  Point(x,y)]
+
+        for ponto in points:
+            pixel = ponto
+            pixel.setFill(cor)
+            pixel.draw(janela)
+
+        return janela
+
+    elif primitiva == 4: 
+                
+        points = [Point(x,y),Point(x+1,y+1),Point(x+1,y),Point(x,y+1),
+                  Point(x-1,y),Point(x+2,y),Point(x,y-1),Point(x,y+2),
+                  Point(x-1,y+1),Point(x+1,y+2),Point(x+2,y+1),Point(x+1,y-1)]
+
+        for ponto in points:
+            pixel = ponto
+            pixel.setFill(cor)
+            pixel.draw(janela)
+
+        return janela
+
+    else:
+        print("ERROR: Primitiva incorreta ou não permitida")
 
 
 
 
-# win = GraphWin("Tela Radar", 800, 600)
 
-# Ponto(0,0,"red",0,win)
+win = GraphWin("Tela Radar", 800, 600)
+
+Ponto(0,0,"red",1,win)
+Ponto(30,90,"green",2,win)
+Ponto(10,100,"blue",3,win)
+Ponto(100,100,"purple",4,win)
+Ponto(100,100,"purple",0,win)
+
+win.getMouse()
+win.close()
 
 
