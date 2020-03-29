@@ -49,7 +49,7 @@ def Ponto(x, y, cor, primitiva, janela):
         print("ERROR: Primitiva incorreta ou não permitida")
     
 
-def Reta(x1,y1,x2,y2, cor, primitiva, janela):
+def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = False):
 
     coordenadasCorrgidasA = corrigirCoordenadas(x1, y1, janela)
     x1 = coordenadasCorrgidasA["x"]
@@ -66,7 +66,7 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
         # Distancias (Deltas)
         dx = x2 - x1
         dy = y2 - y1
-        # Copias positivas do Delta
+        # Copias positivas do Delta (so para facilitar)
         dx1 = abs(dx)
         dy1 = abs(dy)
     
@@ -86,7 +86,12 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
                 x = x2
                 y = y2
                 xe = x1
+
+            Ponto(x, y, cor, primitiva, janela, False)
             
+            if tracejado is True or pontilhado is True:
+                counter = 0
+
             while (x < xe):
                 x = x + 1
                 
@@ -100,7 +105,30 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
             
                     px = px + 2 * (dy1 - dx1)
 
-                Ponto(x, y, cor, primitiva, janela, False)
+                if pontilhado is False and tracejado is False:
+                    # Reta continua, desenha os pontos normalmente
+                    Ponto(x, y, cor, primitiva, janela, False)
+
+                elif pontilhado is True and tracejado is False:  
+                    # Reta pontilhada 
+                    if counter % 5 == 0:
+                        counter += 1
+                        Ponto(x, y, cor, primitiva, janela, False)
+                    else:
+                        counter += 1
+                
+                elif pontilhado is False and tracejado is True:   
+                    # Reta Tracejada 
+                    if counter % 5 == 0 or counter % 6 == 0 or counter % 7 == 0 or counter % 8 == 0:
+                        counter += 1
+                        Ponto(x, y, cor, primitiva, janela, False)
+                    else:
+                        counter += 1
+
+                elif pontilhado is True and tracejado is True:
+                    print("Erro: Escolha somente uma opção, ou pontilhado ou tracejado")
+                        
+
 
         else: # Eixo y dominante
             
@@ -115,6 +143,9 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
                 ye = y1
             
             Ponto(x, y, cor, primitiva, janela, False)
+
+            if tracejado is True or pontilhado is True:
+                counter = 0
             
             while (y < ye):
                 y = y + 1
@@ -129,5 +160,26 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
 
                     py = py + 2 * (dx1 - dy1)
 
-                Ponto(x, y, cor, primitiva, janela, False)
+                if pontilhado is False and tracejado is False:
+                    # Reta continua, desenha os pontos normalmente
+                    Ponto(x, y, cor, primitiva, janela, False)
 
+                elif pontilhado is True and tracejado is False:  
+                    # Reta pontilhada 
+                    if counter % 5 == 0:
+                        counter += 1
+                        Ponto(x, y, cor, primitiva, janela, False)
+                    else:
+                        counter += 1
+                
+                elif pontilhado is False and tracejado is True:   
+                    # Reta Tracejada 
+                    if counter % 5 == 0 or counter % 6 == 0 or counter % 7 == 0 or counter % 8 == 0:
+                        counter += 1
+                        Ponto(x, y, cor, primitiva, janela, False)
+                    else:
+                        counter += 1
+
+                elif pontilhado is True and tracejado is True:
+                    print("Erro: Escolha somente uma opção, ou pontilhado ou tracejado")
+                        
