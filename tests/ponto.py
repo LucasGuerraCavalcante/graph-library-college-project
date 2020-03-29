@@ -92,10 +92,7 @@ def Ponto(x, y, cor, primitiva, janela, corrigirXY = True):
     else:
         print("ERROR: Primitiva incorreta ou não permitida")
 
-
-win = GraphWin("Tela Radar", 800, 600)
-
-
+'''
 Ponto(0,0,"red",1,win)
 Ponto(100,-100,"red",1,win)
 Ponto(0,0,"green",2,win)
@@ -104,7 +101,7 @@ Ponto(0,0,"blue",3,win)
 Ponto(100,100,"blue",3,win)
 Ponto(0,0,"purple",4,win)
 Ponto(-100,100,"purple",4,win)
-'''
+
 Ponto(0,0,"red",1,win)
 Ponto(30,90,"green",2,win)
 Ponto(10,100,"blue",3,win)
@@ -112,8 +109,7 @@ Ponto(100,100,"purple",4,win)
 Ponto(100,100,"purple",0,win)
 '''
 
-
-def Reta(x1,y1,x2,y2, cor, primitiva, janela):
+def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False):
 
     coordenadasCorrgidasA = corrigirCoordenadas(x1, y1, janela)
     x1 = coordenadasCorrgidasA["x"]
@@ -130,7 +126,7 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
         # Distancias (Deltas)
         dx = x2 - x1
         dy = y2 - y1
-        # Copias positivas do Delta
+        # Copias positivas do Delta (so para facilitar)
         dx1 = abs(dx)
         dy1 = abs(dy)
     
@@ -150,7 +146,11 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
                 x = x2
                 y = y2
                 xe = x1
+
+            Ponto(x, y, cor, primitiva, janela, False)
             
+            ct = 0
+
             while (x < xe):
                 x = x + 1
                 
@@ -158,13 +158,23 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
                     px = px + 2 * dy1
                 else:
                     if ((dx < 0 and dy < 0) or (dx > 0 and dy > 0)):
-                        y = y + 1;
+                        y = y + 1
                     else:
-                        y = y - 1;
+                        y = y - 1
             
                     px = px + 2 * (dy1 - dx1)
 
-                Ponto(x, y, cor, primitiva, janela, False)
+                if pontilhado is False:
+                    Ponto(x, y, cor, primitiva, janela, False)
+
+                else:   
+                    if ct % 5 == 0:
+                        Ponto(x, y, cor, primitiva, janela, False)
+                        ct += 1
+                    else:
+                        ct += 1
+                        
+
 
         else: # Eixo y dominante
             
@@ -176,9 +186,11 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
             else: # Desenhar de cima pra braixo
                 x = x2
                 y = y2
-                ye = y1;
+                ye = y1
             
             Ponto(x, y, cor, primitiva, janela, False)
+
+            ct = 0
             
             while (y < ye):
                 y = y + 1
@@ -193,15 +205,23 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela):
 
                     py = py + 2 * (dx1 - dy1)
 
-                Ponto(x, y, cor, primitiva, janela, False)
+                if pontilhado is False:
+                    Ponto(x, y, cor, primitiva, janela, False)
+
+                else:   
+                    if ct % 5 == 0:
+                        ct += 1
+                        Ponto(x, y, cor, primitiva, janela, False)
+                    else:
+                        ct += 1
+                        
 
     
+win = GraphWin("Tela Radar", 1000, 800)
+win.setBackground("#171D17")
 
-Reta(0,0,100,-100,"red",1,win)
-Reta(0,0,-100,-100,"green",1,win)
-Reta(0,0,100,100,"blue",3,win)
-Reta(0,0,-100,100,"purple",4,win)
-#Reta(100,100,"purple",0,win)
+Reta(-1000,800, 1000,-800,"#00FF33",1,win, True)
+Reta(1000,800, -1000,-800,"#00FF33",1,win, True)
 
 win.getMouse()
 win.close()
