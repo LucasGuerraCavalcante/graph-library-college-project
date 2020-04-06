@@ -127,10 +127,9 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = Fa
 
                 elif pontilhado is True and tracejado is True:
                     print("Erro: Escolha somente uma opção, ou pontilhado ou tracejado")
-                        
 
-
-        else: # Eixo y dominante
+        # Eixo y dominante
+        else: 
             
             # Desenhar de baixo pra cima
             if (dy >= 0):

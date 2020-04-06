@@ -188,8 +188,6 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = Fa
                 elif pontilhado is True and tracejado is True:
                     print("Erro: Escolha somente uma opção, ou pontilhado ou tracejado")
                         
-
-
         else: # Eixo y dominante
             
             # Desenhar de baixo pra cima
@@ -226,7 +224,7 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = Fa
 
                 elif pontilhado is True and tracejado is False:  
                     # Reta pontilhada 
-                    if counter % 5 == 0:
+                    if counter % 4 == 0:
                         counter += 1
                         Ponto(x, y, cor, primitiva, janela, False)
                     else:
@@ -246,10 +244,21 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = Fa
 
     
 win = GraphWin("Tela Radar", 1000, 800)
-win.setBackground("#171D17")
+win.setBackground("#00001a")
 
-Reta(-1000,800, 1000,-800,"#00FF33",1,win, True)
-Reta(1000,800, -1000,-800,"#00FF33",1,win, True)
+Reta(-1000,800, 1000,-800,"#339966",1,win, True)
+Reta(1000,800, -1000,-800,"#339966",1,win, True)
+Reta(0,800, 0,-800,"#339966",1,win, True)
+Reta(1000,0, -1000,0,"#339966",1,win, True)
+
+Reta(5,0, 10,0,"#FFF",1,win)
+Reta(-5,0, -10,0,"#FFF",1,win)
+Reta(0,5, 0,10,"#FFF",1,win)
+Reta(0,-5, 0,-10,"#FFF",1,win)
+
+Ponto(0,0,"red",4,win)
+
+
 
 
 win.getMouse()
