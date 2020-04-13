@@ -122,7 +122,7 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = Fa
     if x1 == x2 and y1 == y2:
         Ponto(x1, y1, cor, primitiva, janela, False)
     else:
-        # Algoritmo de Bresenham
+        # Algoritmo de Bresenham https://www.freecodecamp.org/news/how-to-code-your-first-algorithm-draw-a-line-ca121f9a1395/
         # Distancias (Deltas)
         dx = x2 - x1
         dy = y2 - y1
@@ -240,9 +240,44 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = Fa
 
                 elif pontilhado is True and tracejado is True:
                     print("Erro: Escolha somente uma opção, ou pontilhado ou tracejado")
+
+
+def desenharQuadrantes(xc, yc, x, y, cor, primitiva, janela):
+    Ponto( x + xc, y + yc, cor, primitiva, janela, False)
+    Ponto( y + xc,  x + yc, cor, primitiva, janela, False)
+    Ponto( -x + xc,  y + yc, cor, primitiva, janela, False)
+    Ponto( -y + xc,  x + yc, cor, primitiva, janela, False)
+    Ponto( -x + xc, -y + yc, cor, primitiva, janela, False)
+    Ponto( -y + xc, -x + yc, cor, primitiva, janela, False)
+    Ponto( x + xc, -y + yc, cor, primitiva, janela, False)
+    Ponto( y + xc, -x + yc, cor, primitiva, janela, False)
+
+def Circulo(xc, yc, r, cor, primitiva, janela):
+
+    coordenadasCorrgidasA = corrigirCoordenadas(xc, yc, janela)
+    xc = coordenadasCorrgidasA["x"]
+    yc = coordenadasCorrgidasA["y"]
+
+    x = r
+    y = 0
+    err = 1-x
+
+    # Algortimo de Bersenham http://degenerateconic.com/midpoint-circle-algorithm/
+    while x >= y:    
+
+        desenharQuadrantes(xc, yc, x, y, cor, primitiva, janela)
+
+        y = y + 1
+
+        if err < 0:
+            err = err + 2 * y + 1
+        else:
+            x = x - 1
+            err = err + 2 * (y - x + 1)
+
+
                         
 
-    
 win = GraphWin("Tela Radar", 1000, 800)
 win.setBackground("#00001a")
 
@@ -251,6 +286,12 @@ Reta(1000,800, -1000,-800,"#339966",1,win, True)
 Reta(0,800, 0,-800,"#339966",1,win, True)
 Reta(1000,0, -1000,0,"#339966",1,win, True)
 
+Circulo(0, 0, 50, "#339966", 1, win)
+Circulo(0, 0, 100, "#339966", 1, win)
+Circulo(0, 0, 150, "#339966", 1, win)
+Circulo(0, 0, 200, "#339966", 1, win)
+Circulo(0, 0, 250, "#339966", 1, win)
+
 Reta(5,0, 10,0,"#FFF",1,win)
 Reta(-5,0, -10,0,"#FFF",1,win)
 Reta(0,5, 0,10,"#FFF",1,win)
@@ -258,10 +299,6 @@ Reta(0,-5, 0,-10,"#FFF",1,win)
 
 Ponto(0,0,"red",4,win)
 
-
-
-
 win.getMouse()
 win.close()
 
-# https://www.freecodecamp.org/news/how-to-code-your-first-algorithm-draw-a-line-ca121f9a1395/
