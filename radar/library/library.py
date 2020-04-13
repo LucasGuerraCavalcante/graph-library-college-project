@@ -1,38 +1,11 @@
 from tkinter import *
 from graphics import *
 
-'''
-
- def ponto(valorx, valory, cor, primitiva):
-
- rodar o sistema de coordenadas
-
- desenhar o ponto
-
- if primitiva = 1
-   plotPixel(x,y,cor)
-
- if primitiva = 2
-    plotPixel(x,y,cor)
-    plotPixel(x+1,y,cor)
-    plotPixel(x,y-1,cor)
-    etc ...
-
-'''
-
 def corrigirCoordenadas(x, y, janela):
     x = x + (janela.width)/2
     y = (janela.height)/2 - y
     return {'x':x, 'y':y}
 
-'''
-win = GraphWin("Tela Radar", 800, 600)
-
-teste = corrigirCoordenadas(800, 600, win)
-print(teste)
-print(teste["x"])
-print(teste["y"])
-'''
 
 def Ponto(x, y, cor, primitiva, janela, corrigirXY = True):
   
@@ -92,22 +65,6 @@ def Ponto(x, y, cor, primitiva, janela, corrigirXY = True):
     else:
         print("ERROR: Primitiva incorreta ou não permitida")
 
-'''
-Ponto(0,0,"red",1,win)
-Ponto(100,-100,"red",1,win)
-Ponto(0,0,"green",2,win)
-Ponto(100,-100,"green",2,win)
-Ponto(0,0,"blue",3,win)
-Ponto(100,100,"blue",3,win)
-Ponto(0,0,"purple",4,win)
-Ponto(-100,100,"purple",4,win)
-
-Ponto(0,0,"red",1,win)
-Ponto(30,90,"green",2,win)
-Ponto(10,100,"blue",3,win)
-Ponto(100,100,"purple",4,win)
-Ponto(100,100,"purple",0,win)
-'''
 
 def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = False):
 
@@ -122,7 +79,8 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, pontilhado = False, tracejado = Fa
     if x1 == x2 and y1 == y2:
         Ponto(x1, y1, cor, primitiva, janela, False)
     else:
-        # Algoritmo de Bresenham https://www.freecodecamp.org/news/how-to-code-your-first-algorithm-draw-a-line-ca121f9a1395/
+        # Algoritmo de Bresenham 
+        # referencia: https://www.freecodecamp.org/news/how-to-code-your-first-algorithm-draw-a-line-ca121f9a1395/
         # Distancias (Deltas)
         dx = x2 - x1
         dy = y2 - y1
@@ -262,7 +220,8 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
     y = 0
     err = 1-x
 
-    # Algortimo de Bersenham http://degenerateconic.com/midpoint-circle-algorithm/
+    # Algortimo de Bersenham 
+    # referencia: http://degenerateconic.com/midpoint-circle-algorithm/
     while x >= y:    
 
         desenharQuadrantes(xc, yc, x, y, cor, primitiva, janela)
@@ -277,28 +236,3 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
 
 
                         
-
-win = GraphWin("Tela Radar", 1000, 800)
-win.setBackground("#00001a")
-
-Reta(-1000,800, 1000,-800,"#339966",1,win, True)
-Reta(1000,800, -1000,-800,"#339966",1,win, True)
-Reta(0,800, 0,-800,"#339966",1,win, True)
-Reta(1000,0, -1000,0,"#339966",1,win, True)
-
-Circulo(0, 0, 50, "#339966", 1, win)
-Circulo(0, 0, 100, "#339966", 1, win)
-Circulo(0, 0, 150, "#339966", 1, win)
-Circulo(0, 0, 200, "#339966", 1, win)
-Circulo(0, 0, 250, "#339966", 1, win)
-
-Reta(5,0, 10,0,"#FFF",1,win)
-Reta(-5,0, -10,0,"#FFF",1,win)
-Reta(0,5, 0,10,"#FFF",1,win)
-Reta(0,-5, 0,-10,"#FFF",1,win)
-
-Ponto(0,0,"red",4,win)
-
-win.getMouse()
-win.close()
-
