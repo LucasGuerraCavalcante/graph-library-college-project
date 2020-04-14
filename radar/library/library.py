@@ -195,7 +195,7 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, estilo = 0):
                 
                 elif estilo == 2:   
                     # Reta Tracejada 
-                    if counter == 0 or counter == 1 or counter == 2 or counter == 3 or counter == 4:
+                    if counter == 0 or counter == 1 or counter == 2 or counter == 3:
                         counter += 1
                         Ponto(x, y, cor, primitiva, janela, False)
                     else:
