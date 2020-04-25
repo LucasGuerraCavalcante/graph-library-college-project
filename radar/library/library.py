@@ -6,7 +6,6 @@ def corrigirCoordenadas(x, y, janela):
     y = (janela.height)/2 - y
     return {'x':x, 'y':y}
 
-
 def Ponto(x, y, cor, primitiva, janela, corrigirXY = True):
   
     if corrigirXY is True:
@@ -207,6 +206,7 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, estilo = 0):
                     print("Erro: Escolha somente um estilo para a reta, 0, 1 ou 2]")
 
 
+# Funcao resposavel apenas por desenhar os quadrantes do circulo ao mesmo tempo, colocando dois pontos em cada
 def desenharQuadrantes(xc, yc, x, y, cor, primitiva, janela):
     Ponto( x + xc, y + yc, cor, primitiva, janela, False)
     Ponto( y + xc,  x + yc, cor, primitiva, janela, False)
@@ -231,6 +231,7 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
     # referencia: http://degenerateconic.com/midpoint-circle-algorithm/
     while x >= y:    
 
+        # chama a funcao para desenhar os quadrantes
         desenharQuadrantes(xc, yc, x, y, cor, primitiva, janela)
 
         y = y + 1

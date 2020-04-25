@@ -1,48 +1,41 @@
 from tkinter import *
 from graphics import * 
 
-# import math 
+from library import library
 
-# https://mcsp.wartburg.edu/zelle/python/graphics.py
+# Criando a janela
+win = GraphWin("Tela Testes", 100, 100)
+win.setBackground("#00001a")
 
-# Montando a primeira tela
+# Pontos
+library.Ponto(-10,0,"red",1,win)
+library.Ponto(0,0,"green",2,win)
+library.Ponto(10,0,"yellow",3,win)
+library.Ponto(20,0,"blue",4,win)
 
-def main():
-    win = GraphWin("Tela Radar", 800, 600)
-    win.setBackground(color_rgb(16, 16, 37))
+"""
+# Retas
+library.Reta(-1000,800, 1000,-800,"#339966",1,win, 2)
+library.Reta(1000,800, -1000,-800,"#339966",1,win, 2)
+library.Reta(0,800, 0,-800,"#339966",1,win, 2)
+library.Reta(1000,0, -1000,0,"#339966",1,win, 2)
 
-    print(win.width)
+# Circulos
+library.Circulo(0, 0, 90, "#339966", 1, win)
+library.Circulo(0, 0, 190, "#339966", 1, win)
+library.Circulo(0, 0, 290, "#339966", 1, win)
+library.Circulo(0, 0, 390, "#339966", 1, win)
 
-    point = Point(400,300)
-    point.setFill("lime")
-    point.draw(win)
+# Marcador central
+library.Reta(5,0, 10,0,"#FFF",1,win)
+library.Reta(-5,0, -10,0,"#FFF",1,win)
+library.Reta(0,5, 0,10,"#FFF",1,win)
+library.Reta(0,-5, 0,-10,"#FFF",1,win)
+library.Ponto(0,0,"red",4,win)
+"""
 
-    aCircle = Circle(point, 50)
-    bCircle = Circle(point, 100)
-    cCircle = Circle(point, 150)
-    dCircle = Circle(point, 200)
-    eCircle = Circle(point, 250)
-    fCircle = Circle(point, 300)
-    gCircle = Circle(point, 350)
-    hCircle = Circle(point, 400)
-    iCircle = Circle(point, 450)
-    jCircle = Circle(point, 500)
-
-    aCircle.draw(win)
-    bCircle.draw(win)
-    cCircle.draw(win)
-    dCircle.draw(win)
-    eCircle.draw(win)
-    fCircle.draw(win)
-    gCircle.draw(win)
-    hCircle.draw(win)
-    iCircle.draw(win)
-    jCircle.draw(win)
-
-    win.getMouse() 
-    win.close()
-
-main()
+win.getMouse()
+win.close()
 
 
 
