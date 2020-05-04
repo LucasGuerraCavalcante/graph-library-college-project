@@ -242,5 +242,52 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
             x = x - 1
             err = err + 2 * (y - x + 1)
 
+def Aviao(x, y, decolando, angulo, janela):
+        coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
+        x = coordenadasCorrgidas["x"]
+        y = coordenadasCorrgidas["y"]
 
-                        
+        if decolando is True:
+            if angulo == 0:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/0.png"
+            elif angulo == 30:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/30.png"
+            elif angulo == 90:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/90.png"
+            elif angulo == 150:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/150.png"
+            elif angulo == 180:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/180.png"
+            elif angulo == 210:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/210.png"
+            elif angulo == 270:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/270.png"
+            elif angulo == 330:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/330.png"
+            else:
+                print("Angulo não disponível [0, 30, 90, 150, 180, 210, 270, 330]")
+        
+        elif decolando is False:
+            if angulo == 0:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/0.png"
+            elif angulo == 30:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/30.png"
+            elif angulo == 90:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/90.png"
+            elif angulo == 150:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/150.png"
+            elif angulo == 180:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/180.png"
+            elif angulo == 210:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/210.png"
+            elif angulo == 270:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/270.png"
+            elif angulo == 330:
+                imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/330.png"
+            else:
+                print("Angulo não disponível [0, 30, 90, 150, 180, 210, 270, 330]")
+        else:
+            print("O argumento decolando deve ser definido [True, False]")
+
+        aviao = Image(Point(x,y), imagem)
+        aviao.draw(janela)
