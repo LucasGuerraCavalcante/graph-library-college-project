@@ -82,7 +82,6 @@ def Reta(x1,y1,x2,y2, cor, primitiva, janela, estilo = 0):
         Ponto(x1, y1, cor, primitiva, janela, False)
     else:
         # Algoritmo de Bresenham 
-        # referencia: https://www.freecodecamp.org/news/how-to-code-your-first-algorithm-draw-a-line-ca121f9a1395/
         # Distancias (Deltas)
         dx = x2 - x1
         dy = y2 - y1
