@@ -5,7 +5,7 @@ from library import library
 
 # Criando a janela
 win = GraphWin("Tela Radar", 1000, 800)
-win.setBackground("#00001a")
+win.setBackground("#000")
 
 # Retas
 # library.Reta(-1000,800, 1000,-800,"#339966",1,win, 2)
