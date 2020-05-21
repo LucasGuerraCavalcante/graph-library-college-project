@@ -218,9 +218,9 @@ def desenharQuadrantes(xc, yc, x, y, cor, primitiva, janela):
 
 def Circulo(xc, yc, r, cor, primitiva, janela):
 
-    coordenadasCorrgidasA = corrigirCoordenadas(xc, yc, janela)
-    xc = coordenadasCorrgidasA["x"]
-    yc = coordenadasCorrgidasA["y"]
+    coordenadasCorrgidas = corrigirCoordenadas(xc, yc, janela)
+    xc = coordenadasCorrgidas["x"]
+    yc = coordenadasCorrgidas["y"]
 
     x = r
     y = 0
@@ -240,17 +240,20 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
             x = x - 1
             err = err + 2 * (y - x + 1)
 
-def Texto(x, y, palavra, cor, janela, tamanho = 10, estilo = 'bold'):
+def Texto(x, y, palavra, cor, janela, tamanho, estilo):
 
-    coordenadasCorrgidasA = corrigirCoordenadas(x, y, janela)
-    x = coordenadasCorrgidasA["x"]
-    y = coordenadasCorrgidasA["y"]
+    coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
+    x = coordenadasCorrgidas["x"]
+    y = coordenadasCorrgidas["y"]
 
     t = Text(Point(x, y), palavra)
     t.setOutline(cor)
     t.setSize(tamanho)
     t.setStyle(estilo)
     t.draw(janela)
+
+def Aviao():
+
 
 # def Aviao(x, y, decolando, angulo, janela):
 #         coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
