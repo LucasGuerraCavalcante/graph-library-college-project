@@ -268,12 +268,6 @@ def Aviao(x, y, z, f, F, janela):
     aviao = Image(Point(x1,y1), imagem)
     aviao.draw(janela)
 
-
-
-
-
-
-
 # def Aviao(x, y, decolando, angulo, janela):
 #         coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
 #         x = coordenadasCorrgidas["x"]

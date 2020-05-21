@@ -28,6 +28,7 @@ biblioteca.Texto(100, 100, "palavra", "#00F", 10, 'bold', win)
 
 # Aviao
 biblioteca.Aviao(1000, 2000, 3000, 100, 5000, win)
+# Prova real posicao do aviao
 biblioteca.Ponto(50, 100, "red", 1, win)
 
 # Marcador central
