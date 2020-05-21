@@ -8,23 +8,23 @@ from biblioteca import biblioteca
 win = GraphWin("Tela Radar", 1000, 800)
 win.setBackground("#000")
 
-# Retas
-biblioteca.Reta(-1000,800, 1000,-800,"#339966",1,win, 2)
-biblioteca.Reta(1000,800, -1000,-800,"#339966",1,win, 2)
-biblioteca.Reta(0,800, 0,-800,"#339966",1,win, 2)
-biblioteca.Reta(1000,0, -1000,0,"#339966",1,win, 2)
+# # Retas
+# biblioteca.Reta(-1000,800, 1000,-800,"#339966",1,win, 2)
+# biblioteca.Reta(1000,800, -1000,-800,"#339966",1,win, 2)
+# biblioteca.Reta(0,800, 0,-800,"#339966",1,win, 2)
+# biblioteca.Reta(1000,0, -1000,0,"#339966",1,win, 2)
 
-# Circulos
-biblioteca.Circulo(0, 0, 90, "#339966", 1, win)
-biblioteca.Circulo(0, 0, 190, "#339966", 1, win)
-biblioteca.Circulo(0, 0, 290, "#339966", 1, win)
-biblioteca.Circulo(0, 0, 390, "#339966", 1, win)
+# # Circulos
+# biblioteca.Circulo(0, 0, 90, "#339966", 1, win)
+# biblioteca.Circulo(0, 0, 190, "#339966", 1, win)
+# biblioteca.Circulo(0, 0, 290, "#339966", 1, win)
+# biblioteca.Circulo(0, 0, 390, "#339966", 1, win)
 
-# Texto
-biblioteca.Texto(-100, 100, "palavra", "#FFF", 10, 'bold', win)
-biblioteca.Texto(-100, -100, "palavra", "#0F0", 10, 'bold', win)
-biblioteca.Texto(100, -100, "palavra", "#F00", 10, 'bold', win)
-biblioteca.Texto(100, 100, "palavra", "#00F", 10, 'bold', win)
+# # Texto
+# biblioteca.Texto(-100, 100, "palavra", "#FFF", 10, 'bold', win)
+# biblioteca.Texto(-100, -100, "palavra", "#0F0", 10, 'bold', win)
+# biblioteca.Texto(100, -100, "palavra", "#F00", 10, 'bold', win)
+# biblioteca.Texto(100, 100, "palavra", "#00F", 10, 'bold', win)
 
 # Aviao
 biblioteca.Aviao(1000, 2000, 3000, 100, 5000, win)

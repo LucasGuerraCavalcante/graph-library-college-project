@@ -240,11 +240,12 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
             x = x - 1
             err = err + 2 * (y - x + 1)
 
-def Texto(x, y, palavra, cor, tamanho, estilo, janela):
+def Texto(x, y, palavra, cor, tamanho, estilo, janela, corrgirXY = True):
 
-    coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
-    x = coordenadasCorrgidas["x"]
-    y = coordenadasCorrgidas["y"]
+    if corrgirXY == True:
+        coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
+        x = coordenadasCorrgidas["x"]
+        y = coordenadasCorrgidas["y"]
 
     t = Text(Point(x, y), palavra)
     t.setOutline(cor)
@@ -257,16 +258,19 @@ def Texto(x, y, palavra, cor, tamanho, estilo, janela):
 # do sistema de coordenadas e o plano projetivo a distancia f do observador
 def Aviao(x, y, z, f, F, janela):
 
-    x1 = x * f / (F - z)
-    y1 = y * f / (F - z)
+    x2 = x * f / (F - z)
+    y2 = y * f / (F - z)
 
-    coordenadasCorrgidas = corrigirCoordenadas(x1, y1, janela)
-    x1 = coordenadasCorrgidas["x"]
-    y1 = coordenadasCorrgidas["y"]
+    coordenadasCorrgidas = corrigirCoordenadas(x2, y2, janela)
+    x2 = coordenadasCorrgidas["x"]
+    y2 = coordenadasCorrgidas["y"]
+
+    Texto(x2 + 10, y2 + 15, "codigo de voo", "#FFF", 10, "bold", janela, False)
 
     imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/biblioteca/src/decolando/0.png"
-    aviao = Image(Point(x1,y1), imagem)
+    aviao = Image(Point(x2,y2), imagem)
     aviao.draw(janela)
+
 
 # def Aviao(x, y, decolando, angulo, janela):
 #         coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
