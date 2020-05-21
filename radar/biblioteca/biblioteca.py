@@ -240,7 +240,7 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
             x = x - 1
             err = err + 2 * (y - x + 1)
 
-def Texto(x, y, palavra, cor, janela, tamanho, estilo):
+def Texto(x, y, palavra, cor, tamanho, estilo, janela):
 
     coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
     x = coordenadasCorrgidas["x"]
@@ -252,7 +252,26 @@ def Texto(x, y, palavra, cor, janela, tamanho, estilo):
     t.setStyle(estilo)
     t.draw(janela)
 
-def Aviao():
+# calcula a (x', y') da tela realtiva ao ponto (x, y, z) 
+# do aviao no espaco 3D com o onservador a distancia F da origem
+# do sistema de coordenadas e o plano projetivo a distancia f do observador
+def Aviao(x, y, z, f, F, janela):
+
+    x1 = x * f / (F - z)
+    y1 = y * f / (F - z)
+
+    coordenadasCorrgidas = corrigirCoordenadas(x1, y1, janela)
+    x1 = coordenadasCorrgidas["x"]
+    y1 = coordenadasCorrgidas["y"]
+
+    imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/biblioteca/src/decolando/0.png"
+    aviao = Image(Point(x1,y1), imagem)
+    aviao.draw(janela)
+
+
+
+
+
 
 
 # def Aviao(x, y, decolando, angulo, janela):
