@@ -1,4 +1,3 @@
-from tkinter import *
 from graphics import *
 
 def corrigirCoordenadas(x, y, janela):
@@ -8,6 +7,7 @@ def corrigirCoordenadas(x, y, janela):
 
 def Ponto(x, y, cor, primitiva, janela, corrigirXY = True):
   
+    # Corrige o valor (x, y) considerando o ponto (0,0) no meio da tela, se necessario
     if corrigirXY is True:
         coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
         x = coordenadasCorrgidas["x"]
@@ -70,6 +70,7 @@ def Ponto(x, y, cor, primitiva, janela, corrigirXY = True):
 
 def Reta(x1,y1,x2,y2, cor, primitiva, janela, estilo = 0):
 
+    # Corrige o valor (x, y) considerando o ponto (0,0) no meio da tela
     coordenadasCorrgidasA = corrigirCoordenadas(x1, y1, janela)
     x1 = coordenadasCorrgidasA["x"]
     y1 = coordenadasCorrgidasA["y"]
@@ -218,6 +219,7 @@ def desenharQuadrantes(xc, yc, x, y, cor, primitiva, janela):
 
 def Circulo(xc, yc, r, cor, primitiva, janela):
 
+    # Corrige o valor (x, y) considerando o ponto (0,0) no meio da tela
     coordenadasCorrgidas = corrigirCoordenadas(xc, yc, janela)
     xc = coordenadasCorrgidas["x"]
     yc = coordenadasCorrgidas["y"]
@@ -242,6 +244,7 @@ def Circulo(xc, yc, r, cor, primitiva, janela):
 
 def Texto(x, y, palavra, cor, tamanho, estilo, janela, corrgirXY = True):
 
+    # Corrige o valor (x, y) considerando o ponto (0,0) no meio da tela, se necessario
     if corrgirXY == True:
         coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
         x = coordenadasCorrgidas["x"]
@@ -256,20 +259,30 @@ def Texto(x, y, palavra, cor, tamanho, estilo, janela, corrgirXY = True):
 # calcula a (x', y') da tela realtiva ao ponto (x, y, z) 
 # do aviao no espaco 3D com o onservador a distancia F da origem
 # do sistema de coordenadas e o plano projetivo a distancia f do observador
-def Aviao(x, y, z, f, F, janela):
+def Projetar(x, y, z, f, F, janela):
 
     x2 = x * f / (F - z)
     y2 = y * f / (F - z)
 
+    # Corrige o valor (x, y) considerando o ponto (0,0) no meio da tela
     coordenadasCorrgidas = corrigirCoordenadas(x2, y2, janela)
     x2 = coordenadasCorrgidas["x"]
     y2 = coordenadasCorrgidas["y"]
 
-    Texto(x2 + 10, y2 + 15, "codigo de voo", "#FFF", 10, "bold", janela, False)
+    Texto(x2 + 50, y2, "codigo de voo", "#FFF", 10, "bold", janela, False)
+    Ponto(x2, y2, "red", 4, janela)
 
-    imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/biblioteca/src/decolando/0.png"
-    aviao = Image(Point(x2,y2), imagem)
-    aviao.draw(janela)
+    return {'x':x2, 'y':y2}
+
+
+
+
+
+
+
+
+
+
 
 
 # def Aviao(x, y, decolando, angulo, janela):
