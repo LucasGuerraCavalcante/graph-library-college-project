@@ -9,9 +9,17 @@ fundo_radar = biblioteca.Tela_de_Fundo()
 # Inicializando o radar
 radar = fundo_radar
 
-# Aviao
+# Projetar
 biblioteca.Projetar(1000, 2000, 3000, 100, 5000, radar)
+
+radar.close()
+
+fundo_radar = biblioteca.Tela_de_Fundo()
+radar = fundo_radar
+
+biblioteca.Projetar(5000, 100, 3000, 2000, 1000, radar)
 
 radar.getMouse()
 radar.close()
+
 

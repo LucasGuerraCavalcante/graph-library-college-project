@@ -256,25 +256,6 @@ def Texto(x, y, palavra, cor, tamanho, estilo, janela, corrgirXY = True):
     t.setStyle(estilo)
     t.draw(janela)
 
-def Tela_de_Fundo():
-
-    janela = GraphWin("Tela Radar", 1000, 800)
-    janela.setBackground("#000")
-
-    Reta(-1000,800, 1000,-800,"#339966",1,janela, 2)
-    Reta(1000,800, -1000,-800,"#339966",1,janela, 2)
-    Reta(0,800, 0,-800,"#339966",1,janela, 2)
-    Reta(1000,0, -1000,0,"#339966",1,janela, 2)
-
-    Circulo(0, 0, 90, "#339966", 1, janela)
-    Circulo(0, 0, 190, "#339966", 1, janela)
-    Circulo(0, 0, 290, "#339966", 1, janela)
-    Circulo(0, 0, 390, "#339966", 1, janela)
-
-    return janela
-
-
-
 # calcula a (x', y') da tela realtiva ao ponto (x, y, z) 
 # do aviao no espaco 3D com o onservador a distancia F da origem
 # do sistema de coordenadas e o plano projetivo a distancia f do observador
@@ -292,6 +273,28 @@ def Projetar(x, y, z, f, F, janela):
     Ponto(x2, y2, "red", 4, janela, False)
 
     return {'x':x2, 'y':y2}
+
+def Tela_de_Fundo():
+
+    janela = GraphWin("Tela Radar", 1000, 800)
+    janela.setBackground("#000")
+
+    # Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
+    # Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
+    # Reta(0, 800, 0, -800,"#339966",1,janela, 2)
+    # Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
+
+    # Circulo(0, 0, 90, "#339966", 1, janela)
+    # Circulo(0, 0, 190, "#339966", 1, janela)
+    # Circulo(0, 0, 290, "#339966", 1, janela)
+    # Circulo(0, 0, 390, "#339966", 1, janela)
+
+    Texto(15, 370, "0°", "#339966", 15, "bold", janela)
+    Texto(30, -370, "180°", "#339966", 15, "bold", janela)
+    Texto(480, 15, "90°", "#339966", 15, "bold", janela)
+    Texto(-480, 15, "270°", "#339966", 15, "bold", janela)
+
+    return janela
 
 
 # def Apagar()
