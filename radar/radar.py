@@ -10,7 +10,9 @@ fundo_radar = biblioteca.Tela_de_Fundo()
 radar = fundo_radar
 
 # Projetar
-biblioteca.Projetar(1000, 2000, 3000, 100, 5000, radar)
+items = biblioteca.Projetar(1000, 2000, 3000, 100, 5000, radar)
+teste = biblioteca.Direcao(items["x"],items["y"])
+print(teste)
 
 # radar.close()
 
