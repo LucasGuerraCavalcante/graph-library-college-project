@@ -3,6 +3,7 @@
 
 from graphics import *
 from math import *
+import os
 
 def corrigirCoordenadas(x, y, janela):
     x = x + (janela.width)/2
@@ -296,9 +297,6 @@ def Projetar(x, y, z, f, F, janela):
     x2 = coordenadasCorrgidas["x"]
     y2 = coordenadasCorrgidas["y"]
 
-    Texto(x2 + 50, y2, "codigo de voo", "#FFF", 10, "bold", janela, False)
-    Ponto(x2, y2, "red", 4, janela, False)
-
     return {'x':x2, 'y':y2}
 
 def Direcao(x, y):
@@ -311,7 +309,44 @@ def Direcao(x, y):
 
     return angulo 
 
-def Aviao(x, y, status, codigo_de_voo):
+def Aviao(x, y, status, codigo_de_voo, janela):
+
+    # calculo da direcao
+    angulo = Direcao(x, y)
+
+    # aproximando o angulo ao angulo dos icones
+    if angulo >= 0 and angulo < 45:
+        angulo = 0
+    elif angulo >= 45 and angulo < 90:
+         angulo = 45
+    elif angulo >= 90 and angulo < 135:
+        angulo = 90
+    elif angulo >= 135 and angulo < 180:
+        angulo = 135
+    elif angulo >= 180 and angulo < 225:
+        angulo = 180
+    elif angulo >= 225 and angulo < 270:
+        angulo = 225
+    elif angulo >= 270 and angulo < 315:
+        angulo = 270
+    elif angulo >= 315 and angulo < 360:
+        angulo = 315
+    elif angulo == 360:
+        angulo = 0
+
+    diretorioAtual = os.path.dirname(__file__)
+    imagem = os.path.join(diretorioAtual, 'src/' + status + '/' + str(angulo) + '.png')
+
+    Texto(x + 35, y, codigo_de_voo, "#FFF", 10, "bold", janela, False)
+
+    aviao = Image(Point(x,y), imagem)
+    aviao.draw(janela)
+
+
+
+
+
+
 
 
 

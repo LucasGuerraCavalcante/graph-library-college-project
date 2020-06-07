@@ -11,8 +11,7 @@ radar = fundo_radar
 
 # Projetar
 items = biblioteca.Projetar(1000, 2000, 3000, 100, 5000, radar)
-teste = biblioteca.Direcao(items["x"],items["y"])
-print(teste)
+biblioteca.Aviao(items['x'], items['y'], 'D', "LA 2203", radar)
 
 # radar.close()
 
