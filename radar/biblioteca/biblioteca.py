@@ -1,3 +1,7 @@
+
+
+# Lucas Guerra & Rafael Viana
+
 from graphics import *
 
 def corrigirCoordenadas(x, y, janela):
@@ -279,20 +283,20 @@ def Tela_de_Fundo():
     janela = GraphWin("Tela Radar", 1000, 800)
     janela.setBackground("#000")
 
-    # Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
-    # Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
-    # Reta(0, 800, 0, -800,"#339966",1,janela, 2)
-    # Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
+    Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
+    Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
+    Reta(0, 800, 0, -800,"#339966",1,janela, 2)
+    Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
 
-    # Circulo(0, 0, 90, "#339966", 1, janela)
-    # Circulo(0, 0, 190, "#339966", 1, janela)
-    # Circulo(0, 0, 290, "#339966", 1, janela)
-    # Circulo(0, 0, 390, "#339966", 1, janela)
+    Circulo(0, 0, 90, "#339966", 1, janela)
+    Circulo(0, 0, 190, "#339966", 1, janela)
+    Circulo(0, 0, 290, "#339966", 1, janela)
+    Circulo(0, 0, 390, "#339966", 1, janela)
 
     Texto(15, 370, "0°", "#339966", 15, "bold", janela)
     Texto(30, -370, "180°", "#339966", 15, "bold", janela)
-    Texto(480, 15, "90°", "#339966", 15, "bold", janela)
-    Texto(-480, 15, "270°", "#339966", 15, "bold", janela)
+    Texto(420, 15, "90°", "#339966", 15, "bold", janela)
+    Texto(-420, 15, "270°", "#339966", 15, "bold", janela)
 
     return janela
 
