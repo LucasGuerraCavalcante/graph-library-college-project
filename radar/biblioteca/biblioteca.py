@@ -261,20 +261,22 @@ def Texto(x, y, palavra, cor, tamanho, estilo, janela, corrgirXY = True):
     t.setStyle(estilo)
     t.draw(janela)
 
+    return t
+
 def Tela_de_Fundo():
 
     janela = GraphWin("Tela Radar", 1000, 800)
     janela.setBackground("#000")
 
-    # Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
-    # Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
-    # Reta(0, 800, 0, -800,"#339966",1,janela, 2)
-    # Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
+    Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
+    Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
+    Reta(0, 800, 0, -800,"#339966",1,janela, 2)
+    Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
 
-    # Circulo(0, 0, 90, "#339966", 1, janela)
-    # Circulo(0, 0, 190, "#339966", 1, janela)
-    # Circulo(0, 0, 290, "#339966", 1, janela)
-    # Circulo(0, 0, 390, "#339966", 1, janela)
+    Circulo(0, 0, 90, "#339966", 1, janela)
+    Circulo(0, 0, 190, "#339966", 1, janela)
+    Circulo(0, 0, 290, "#339966", 1, janela)
+    Circulo(0, 0, 390, "#339966", 1, janela)
 
     Texto(15, 370, "0°", "#339966", 15, "bold", janela)
     Texto(30, -370, "180°", "#339966", 15, "bold", janela)
@@ -282,6 +284,12 @@ def Tela_de_Fundo():
     Texto(-420, 15, "270°", "#339966", 15, "bold", janela)
 
     return janela
+
+def Limpar_Avioes(avioes):
+
+    for aviao in avioes:
+        (aviao['aviao']).undraw()
+        (aviao['codigo']).undraw()
 
 
 # calcula a (x', y') da tela realtiva ao ponto (x, y, z) 
@@ -315,21 +323,21 @@ def Aviao(x, y, status, codigo_de_voo, janela):
     angulo = Direcao(x, y)
 
     # aproximando o angulo ao angulo dos icones
-    if angulo >= 0 and angulo < 45:
+    if angulo == 0:
         angulo = 0
-    elif angulo >= 45 and angulo < 90:
+    elif angulo > 0 and angulo < 90:
          angulo = 45
-    elif angulo >= 90 and angulo < 135:
+    elif angulo == 90 :
         angulo = 90
-    elif angulo >= 135 and angulo < 180:
+    elif angulo > 90 and angulo < 180:
         angulo = 135
-    elif angulo >= 180 and angulo < 225:
+    elif angulo == 180:
         angulo = 180
-    elif angulo >= 225 and angulo < 270:
+    elif angulo > 180 and angulo < 270:
         angulo = 225
-    elif angulo >= 270 and angulo < 315:
+    elif angulo == 270:
         angulo = 270
-    elif angulo >= 315 and angulo < 360:
+    elif angulo > 270 and angulo < 360:
         angulo = 315
     elif angulo == 360:
         angulo = 0
@@ -337,66 +345,9 @@ def Aviao(x, y, status, codigo_de_voo, janela):
     diretorioAtual = os.path.dirname(__file__)
     imagem = os.path.join(diretorioAtual, 'src/' + status + '/' + str(angulo) + '.png')
 
-    Texto(x + 35, y, codigo_de_voo, "#FFF", 10, "bold", janela, False)
-
+    codigo = Texto(x + 35, y, codigo_de_voo, "#FFF", 10, "bold", janela, False)
     aviao = Image(Point(x,y), imagem)
     aviao.draw(janela)
 
+    return {'aviao':aviao, 'codigo':codigo}
 
-
-
-
-
-
-
-
-
-# def Aviao(x, y, decolando, angulo, janela):
-#         coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
-#         x = coordenadasCorrgidas["x"]
-#         y = coordenadasCorrgidas["y"]
-
-#         if decolando is True:
-#             if angulo == 0:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/0.png"
-#             elif angulo == 30:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/30.png"
-#             elif angulo == 90:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/90.png"
-#             elif angulo == 150:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/150.png"
-#             elif angulo == 180:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/180.png"
-#             elif angulo == 210:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/210.png"
-#             elif angulo == 270:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/270.png"
-#             elif angulo == 330:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/decolando/330.png"
-#             else:
-#                 print("Angulo não disponível [0, 30, 90, 150, 180, 210, 270, 330]")
-        
-#         elif decolando is False:
-#             if angulo == 0:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/0.png"
-#             elif angulo == 30:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/30.png"
-#             elif angulo == 90:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/90.png"
-#             elif angulo == 150:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/150.png"
-#             elif angulo == 180:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/180.png"
-#             elif angulo == 210:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/210.png"
-#             elif angulo == 270:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/270.png"
-#             elif angulo == 330:
-#                 imagem = "/Users/Bete/Desktop/Trabalhos/graph-library-college-project/radar/library/src/pousando/330.png"
-#             else:
-#                 print("Angulo não disponível [0, 30, 90, 150, 180, 210, 270, 330]")
-#         else:
-#             print("O argumento decolando deve ser definido [True, False]")
-
-#         aviao = Image(Point(x,y), imagem)
-#         aviao.draw(janela)
