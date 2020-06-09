@@ -268,15 +268,15 @@ def Tela_de_Fundo():
     janela = GraphWin("Tela Radar", 1000, 800)
     janela.setBackground("#000")
 
-    Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
-    Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
-    Reta(0, 800, 0, -800,"#339966",1,janela, 2)
-    Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
+    # Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
+    # Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
+    # Reta(0, 800, 0, -800,"#339966",1,janela, 2)
+    # Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
 
-    Circulo(0, 0, 90, "#339966", 1, janela)
-    Circulo(0, 0, 190, "#339966", 1, janela)
-    Circulo(0, 0, 290, "#339966", 1, janela)
-    Circulo(0, 0, 390, "#339966", 1, janela)
+    # Circulo(0, 0, 90, "#339966", 1, janela)
+    # Circulo(0, 0, 190, "#339966", 1, janela)
+    # Circulo(0, 0, 290, "#339966", 1, janela)
+    # Circulo(0, 0, 390, "#339966", 1, janela)
 
     Texto(15, 370, "0°", "#339966", 15, "bold", janela)
     Texto(30, -370, "180°", "#339966", 15, "bold", janela)
@@ -315,12 +315,14 @@ def Direcao(x, y):
     # calcula a arco targente de m (radianos) e depois converte para graus e tira a parte decimal
     angulo = int(degrees(atan(m)))
 
-    return angulo 
+    return abs(angulo)
 
 def Aviao(x, y, status, codigo_de_voo, janela):
 
     # calculo da direcao
     angulo = Direcao(x, y)
+
+    print(angulo)
 
     # aproximando o angulo ao angulo dos icones
     if angulo == 0:
