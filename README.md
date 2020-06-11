@@ -21,7 +21,7 @@ All functions are in/ Todas as funções estão em:
 
 ![disks](https://github.com/LucasGuerraCavalcante/graph-library-college-project/blob/master/img/disks.png)
 
-### And with that draw am aircraft radar / E com isso construir um radar 
+### And with that draw an aircraft radar / E com isso construir um radar 
 
-![radar](https://github.com/LucasGuerraCavalcante/graph-library-college-project/blob/master/img/radar_background.png)
+![radar](https://recordit.co/txP3AgSNma)
 
