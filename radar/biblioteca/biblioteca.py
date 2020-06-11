@@ -5,6 +5,7 @@ from graphics import *
 from math import *
 import os
 
+# funcao que desloca a posicao (0,0) para o centro da tela
 def corrigirCoordenadas(x, y, janela):
     x = x + (janela.width)/2
     y = (janela.height)/2 - y
@@ -255,28 +256,28 @@ def Texto(x, y, palavra, cor, tamanho, estilo, janela, corrgirXY = True):
         x = coordenadasCorrgidas["x"]
         y = coordenadasCorrgidas["y"]
 
-    t = Text(Point(x, y), palavra)
-    t.setOutline(cor)
-    t.setSize(tamanho)
-    t.setStyle(estilo)
-    t.draw(janela)
+    texto = Text(Point(x, y), palavra)
+    texto.setOutline(cor)
+    texto.setSize(tamanho)
+    texto.setStyle(estilo)
+    texto.draw(janela)
 
-    return t
+    return texto
 
 def Tela_de_Fundo():
 
     janela = GraphWin("Tela Radar", 1000, 800)
     janela.setBackground("#000")
 
-    # Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
-    # Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
-    # Reta(0, 800, 0, -800,"#339966",1,janela, 2)
-    # Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
+    Reta(-1000, 800, 1000, -800,"#339966",1,janela, 2)
+    Reta(1000, 800, -1000, -800,"#339966",1,janela, 2)
+    Reta(0, 800, 0, -800,"#339966",1,janela, 2)
+    Reta(1000, 0, -1000, 0,"#339966",1,janela, 2)
 
-    # Circulo(0, 0, 90, "#339966", 1, janela)
-    # Circulo(0, 0, 190, "#339966", 1, janela)
-    # Circulo(0, 0, 290, "#339966", 1, janela)
-    # Circulo(0, 0, 390, "#339966", 1, janela)
+    Circulo(0, 0, 90, "#339966", 1, janela)
+    Circulo(0, 0, 190, "#339966", 1, janela)
+    Circulo(0, 0, 290, "#339966", 1, janela)
+    Circulo(0, 0, 390, "#339966", 1, janela)
 
     Texto(15, 370, "0°", "#339966", 15, "bold", janela)
     Texto(30, -370, "180°", "#339966", 15, "bold", janela)
@@ -292,7 +293,7 @@ def Limpar_Avioes(avioes):
         (aviao['codigo']).undraw()
 
 
-# calcula a (x', y') da tela realtiva ao ponto (x, y, z) 
+# calcula o (x', y') da tela realtiva ao ponto (x, y, z) 
 # do aviao no espaco 3D com o onservador a distancia F da origem
 # do sistema de coordenadas e o plano projetivo a distancia f do observador
 def Projetar(x, y, z, f, F, janela):
@@ -300,56 +301,64 @@ def Projetar(x, y, z, f, F, janela):
     x2 = x * f / (F - z)
     y2 = y * f / (F - z)
 
-    # Corrige o valor (x, y) considerando o ponto (0,0) no meio da tela
-    coordenadasCorrgidas = corrigirCoordenadas(x2, y2, janela)
-    x2 = coordenadasCorrgidas["x"]
-    y2 = coordenadasCorrgidas["y"]
-
     return {'x':x2, 'y':y2}
 
 def Direcao(x, y):
+
     # y = x*m + B
     # (1) 0 = 0*m + B = B
     # (2) y = x*m + B -> m = y/x 
-    m = y/x
-    # calcula a arco targente de m (radianos) e depois converte para graus e tira a parte decimal
-    angulo = int(degrees(atan(m)))
 
-    return abs(angulo)
+    if x == 0 or y == 0:
+        return 0
+    else:
+        m = y/x
+        # calcula a arco targente de m (radianos) e depois converte para graus 
+        angulo = degrees(atan(m))
 
-def Aviao(x, y, status, codigo_de_voo, janela):
+        return angulo
 
-    # calculo da direcao
-    angulo = Direcao(x, y)
+# obs: status = cor do icone
+def Aviao(x, y, angulo, status, codigo_de_voo, janela):
+    print(angulo, codigo_de_voo)
 
-    print(angulo)
+    # aproximando o angulo calculado ao angulo dos icones (baseado no angulo teta da reta em relacao a (x,y))
+    if 0 <= angulo <= 10:
+        angulo = '0'
+    elif 10 < angulo <= 67:
+        angulo = '45'
+    elif 67 < angulo <= 112:
+        angulo = '90'
+    elif 112 < angulo <= 157:
+        angulo = '135'
+    elif 157 < angulo <= 180:
+        angulo = '180'
+    elif 0 > angulo >= -10:
+        angulo = '0'
+    elif -10 > angulo >= -67:
+        angulo = '-45'  
+    elif -67 > angulo >= -112:
+        angulo = '-90'
+    elif -112 > angulo >= -157:
+        angulo = '-135'
+    elif -157 > angulo >= -180:
+        angulo = '180'
+    # selecionando o icone a partir do angulo e do status (cor) 
+    icone = 'src/%s/%s.png'%(status, angulo)
 
-    # aproximando o angulo ao angulo dos icones
-    if angulo == 0:
-        angulo = 0
-    elif angulo > 0 and angulo < 90:
-         angulo = 45
-    elif angulo == 90 :
-        angulo = 90
-    elif angulo > 90 and angulo < 180:
-        angulo = 135
-    elif angulo == 180:
-        angulo = 180
-    elif angulo > 180 and angulo < 270:
-        angulo = 225
-    elif angulo == 270:
-        angulo = 270
-    elif angulo > 270 and angulo < 360:
-        angulo = 315
-    elif angulo == 360:
-        angulo = 0
-
+    # selecionando o direotiro atual para o python encontrar a pasta dos icones
     diretorioAtual = os.path.dirname(__file__)
-    imagem = os.path.join(diretorioAtual, 'src/' + status + '/' + str(angulo) + '.png')
 
-    codigo = Texto(x + 35, y, codigo_de_voo, "#FFF", 10, "bold", janela, False)
-    aviao = Image(Point(x,y), imagem)
+    # Corrige o valor (x, y) considerando o ponto (0,0) no meio da tela
+    coordenadasCorrgidas = corrigirCoordenadas(x, y, janela)
+    x = coordenadasCorrgidas["x"]
+    y = coordenadasCorrgidas["y"]
+
+    aviao = Image(Point(x,y), os.path.join(diretorioAtual, icone))
     aviao.draw(janela)
 
+    codigo = Texto(x + 35, y, codigo_de_voo, "#FFF", 10, "bold", janela, False)
+
     return {'aviao':aviao, 'codigo':codigo}
+
 
