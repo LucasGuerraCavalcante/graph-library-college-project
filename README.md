@@ -23,5 +23,5 @@ All functions are in/ Todas as funções estão em:
 
 ### And with that draw an aircraft radar / E com isso construir um radar 
 
-![radar](https://recordit.co/txP3AgSNma)
+![radar](http://g.recordit.co/txP3AgSNma.gif)
 
